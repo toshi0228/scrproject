@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block customcss %}
+<link rel="stylesheet" href="{% static 'sty.css' %}">
+{% endblock customcss %}
+
+{% block content %}
+<!-- <h1>完了しました</h1> -->
+
+<a href=" {% url 'index' %} ">トップ戻る</a>
+{% for r in rev %}
+{{ r.yado_name}}
+{% endfor %}
+{% endblock content %}
