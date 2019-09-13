@@ -22,10 +22,10 @@
 
             <div class="col-sm-4" >
                 <div class="card">
-                    <a href="{% url 'finish' %}"><img src="/media/img/pic01.jpg" alt="" class="card-img"></a>
+                    <a href="{% url 'janum' %}"><img src="/media/img/pic01.jpg" alt="" class="card-img"></a>
                     <div class="card-body">
-                        <h4 class="card-title text-center">スクレイピング</h4>
-                        <p class="card-text text-center">試しのスクレイピングを行う</p>
+                        <h4 class="card-title text-center">じゃらん番号</h4>
+                        <p class="card-text text-center">じゃらん番号を取得する</p>
                     </div>
                 </div>
             </div>
@@ -35,20 +35,21 @@
                     <a href="{% url 'ja' %}"><img src="/media/img/pic07.jpg" alt="" class="card-img"></a>
                     <div class="card-body">
                         <h4 class="card-title text-center">じゃらん口コミ</h4>
-                        <p class="card-text text-center">じゃらんの口コミをスクレイピングする</p>
+                        <p class="card-text text-center">データベースに保存する</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="/media/img/pic06.jpg" alt="" class="card-img">
+                    <a href="{% url 'jaex' %}"><img src="/media/img/pic06.jpg" alt="" class="card-img"></a>
                     <div class="card-body">
-                        <h4 class="card-title">recomend</h4>
-                        <p class="card-text">kanifneapfm@ampfrhfjioahrioea;ja</p>
+                        <h4 class="card-title text-center">じゃらん口コミ</h4>
+                        <p class="card-text text-center">エクセルでデータを取得する</p>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -57,30 +58,30 @@
 
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="/media/img/pic04.jpg" alt="" class="card-img">
+                    <a href="{% url 'rtnum' %}"><img src="/media/img/pic04.jpg" alt="" class="card-img"></a>
                     <div class="card-body">
-                        <h4 class="card-title">recomend</h4>
-                        <p class="card-text">kanifneapfm@ampfrhfjioahrioea;ja</p>
+                        <h4 class="card-title text-center">楽天番号</h4>
+                        <p class="card-text text-center">楽天番号を取得する</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="/media/img/pic05.jpg" alt="" class="card-img">
+                    <a href="{% url 'rt' %}"><img src="/media/img/pic05.jpg" alt="" class="card-img"></a>
                     <div class="card-body">
-                        <h4 class="card-title">recomend</h4>
-                        <p class="card-text">kanifneapfm@ampfrhfjioahrioea;ja</p>
+                        <h4 class="card-title text-center">楽天口コミ</h4>
+                        <p class="card-text text-center">エクセルでデータを取得する</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-4">
                 <div class="card">
-                    <img src="/media/img/pic03.jpg" alt="" class="card-img">
+                    <a href="{% url 'rtsa' %}"><img src="/media/img/pic03.jpg" alt="" class="card-img"></a>
                     <div class="card-body">
-                        <h4 class="card-title">recomend</h4>
-                        <p class="card-text">kanifneapfm@ampfrhfjioahrioea;ja</p>
+                        <h4 class="card-title text-center">楽天口コミ</h4>
+                        <p class="card-text text-center">エクセルでデータを取得する(営業用)</p>
                     </div>
                 </div>
             </div>
@@ -91,10 +92,10 @@
 
 
 
-<form action="{% url 'finish' %}" method ='POST'>
+<!-- <form action="{% url 'finish' %}" method ='POST'>
     {% csrf_token %}
     <input type="submit" name='button_1' value="スクレイピング開始" img src="/media/img/pic06.jpg" alt="" class="card-img">
 </form>
 
-<h1>aa</h1>
+<h1>aa</h1> -->
 {% endblock content %}

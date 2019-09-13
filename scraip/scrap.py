@@ -9,11 +9,13 @@ from selenium.webdriver.support.ui import Select
 from .models import reviews
 
 
+
+
 def get():
     
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--incognito")
-
+    
     driver=webdriver.Chrome("/Users/enokitoshiki/anaconda3/envs/testskyper/selenium/chromedriver", chrome_options=chrome_options)
     driver.maximize_window()
     # driver.get("https://www.jalan.net/")
@@ -29,3 +31,7 @@ def get():
     
 if __name__ == '__main__':
     get()
+    
+    
+    
+    

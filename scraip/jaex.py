@@ -6,21 +6,20 @@ import datetime
 import requests
 from bs4 import BeautifulSoup
 from selenium.webdriver.support.ui import Select
-from .models import reviews, Yado
 
 
 # driver.getはdriver=webdriver.Chrome()を使ったあとでないと起動しない
 # driver=webdriver.Chrome("/Users/enokitoshiki/anaconda3/envs/testskyper/selenium/chromedriver")
 # driver.maximize_window()
 
-def jaget():
+def jaexget():
     print(datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--incognito")
 
 
-    key_list = ["宿名","じゃらん番号",'エリア', '掲載順位','日付', '口コミ件数', "総合評価",'部屋', '風呂',
+    key_list = ["宿名","じゃらん番号",'エリア', '全体件数', '掲載順位','日付', '口コミ件数', "総合評価",'部屋', '風呂',
             '料理（朝食）', '料理（夕食）', '接客・サービス', '清潔感', '2食付き最安値', '素泊まり最安値','プラン数']
 
 
@@ -36,7 +35,6 @@ def jaget():
             f.write(str(key) + ",")
         f.write('\n')
         
-
 
     class Create():
         
@@ -62,6 +60,7 @@ def jaget():
                 
 
     # ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ブラウザのキャッシュを消すための処理＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
                 
         # この関数で、何回目でブラウザーを閉じて、口コミを取得するか決めている
         def get_yado_info(self):
@@ -123,9 +122,6 @@ def jaget():
 
     # ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ブラウザのキャッシュを消すための処理＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
-            
-            
-
     class GetYado(Create):
         
         def __init__(self, url, ja_num):
@@ -174,8 +170,7 @@ def jaget():
     # ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝処理の順番＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
 
-
-            
+        
 
     # ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝口コミ処理＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
             
@@ -201,28 +196,23 @@ def jaget():
                     or review == "風呂" or review == "食事" or review == "数" or review == '':
                     pass
                 elif review == '－－－－－':
-                    replace_review = review.replace('－－－－－', '')
-                    self.__reviews_list.append(replace_review)
-                elif review == '- ':
-                    replace_review = review.replace('- ', '0')
+                    replace_review = review.replace('－－－－－', '-')
                     self.__reviews_list.append(replace_review)
                 else:
                     self.__reviews_list.append(review)
                     
-            print(self.__reviews_list)
-                    
             try:
                 if "－ 有効クチコミ数に達していないためクチコミ評価は表示しておりません  "  == self.__reviews_list[0]:
                     
-                    self.__ja_reviews_dic["総合評価"] = "0"
-                    self.__ja_reviews_dic["部屋"] = "0"
-                    self.__ja_reviews_dic["風呂"] = "0"
-                    self.__ja_reviews_dic["料理（朝食）"] = "0"
-                    self.__ja_reviews_dic["料理（夕食）"] = "0"
-                    self.__ja_reviews_dic["接客・サービス"] = "0"
-                    self.__ja_reviews_dic["清潔感"] = "0"
+                    self.__ja_reviews_dic["総合評価"] = "- "
+                    self.__ja_reviews_dic["部屋"] = "- "
+                    self.__ja_reviews_dic["風呂"] = "- "
+                    self.__ja_reviews_dic["料理（朝食）"] = "- "
+                    self.__ja_reviews_dic["料理（夕食）"] = "- "
+                    self.__ja_reviews_dic["接客・サービス"] = "- "
+                    self.__ja_reviews_dic["清潔感"] = "- "
                     self.__ja_reviews_dic["日付"] = str(datetime.date.today())  
-                    self.__ja_reviews_dic["口コミ件数"] = "0"              
+                    self.__ja_reviews_dic["口コミ件数"] = "- "              
 
                 else:
                     self.__ja_reviews_dic["総合評価"] = self.__reviews_list[0]
@@ -233,14 +223,14 @@ def jaget():
                     self.__ja_reviews_dic["接客・サービス"] = self.__reviews_list[5]
                     self.__ja_reviews_dic["清潔感"] = self.__reviews_list[6]
                     self.__ja_reviews_dic["日付"] = str(datetime.date.today())
-                    self.__ja_reviews_dic["口コミ件数"] = "0"
+                    self.__ja_reviews_dic["口コミ件数"] = "- "
                 
                     self.reviews_num_check()
                 
             except:
                 self.__reviews_list.clear()
                 for review in range(7):
-                    self.__reviews_list.append("0")
+                    self.__reviews_list.append("- ")
                     
                 self.__ja_reviews_dic["総合評価"] = self.__reviews_list[0]
                 self.__ja_reviews_dic["部屋"] = self.__reviews_list[1]
@@ -250,7 +240,7 @@ def jaget():
                 self.__ja_reviews_dic["接客・サービス"] = self.__reviews_list[5]
                 self.__ja_reviews_dic["清潔感"] = self.__reviews_list[6]
                 self.__ja_reviews_dic["日付"] = str(datetime.date.today())
-                self.__ja_reviews_dic["口コミ件数"] = "0"
+                self.__ja_reviews_dic["口コミ件数"] = "- "
                 
             print("\n")        
             
@@ -266,7 +256,7 @@ def jaget():
                     self.__ja_reviews_dic["口コミ件数"] = review_num
 
             if len(reviews_num) == 1:
-                self.__ja_reviews_dic["口コミ件数"] = ""
+                self.__ja_reviews_dic["口コミ件数"] = "- "
             else:
                 pass
                 
@@ -320,7 +310,7 @@ def jaget():
                 print(dinner_breakfast)
                 time.sleep(1)
             except:
-                self.__ja_reviews_dic["2食付き最安値"] = "0"
+                self.__ja_reviews_dic["2食付き最安値"] = "- "
                 
             
             #素泊まりの処理　※サイドバーで料金設定を行う場合があるのでtyr exceptを行う
@@ -347,7 +337,7 @@ def jaget():
                 self.__ja_reviews_dic["素泊まり最安値"] = stay_overnight
                 print(stay_overnight)
             except:
-                self.__ja_reviews_dic["素泊まり最安値"] = "0"
+                self.__ja_reviews_dic["素泊まり最安値"] = "- "
 
         def price_min(self):
             
@@ -369,18 +359,24 @@ def jaget():
                 price = int(price)
                 price_list.append(price)
             return min(price_list)
-        
+            
+            
     # ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝料金処理＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-    
-    
+
+
 
     # ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝エリア移動＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
         
         
         def movement_area(self):
             driver.find_element_by_link_text(self.__ja_reviews_dic["エリア"]).click()
+            all_yado_nums = driver.find_element_by_xpath('//*[@id="search-tab"]/table[2]/tbody/tr[1]/td[1]/span[1]').text
+            self.__ja_reviews_dic["全体件数"] = all_yado_nums
+            
+            
             page_nums = driver.find_element_by_xpath('//*[@id="search-tab"]/table[2]/tbody/tr[1]/td[2]').text
             page_nums_split = re.split('[\n |]',page_nums)
+            
             for page_num in page_nums_split:
                 if page_num == "最初" or page_num == '' or  page_num ==  '前へ' \
                         or page_num == "次へ" or page_num == "最後" :
@@ -402,8 +398,8 @@ def jaget():
                 else:
                     self.__yado_list1.append(yado_name)
                     
+                    
         def delete_advertisement(self):
-            
             advertisement_num = len(self.__yado_list1) - 30
             
             global yado_list1
@@ -521,7 +517,7 @@ def jaget():
             try:
                 self.__ja_reviews_dic["掲載順位"] = yado_rank_dict[self.__ja_reviews_dic["宿名"]]
             except:
-                self.__ja_reviews_dic["掲載順位"] = "0"
+                self.__ja_reviews_dic["掲載順位"] = "- "
             
             self.__ja_reviews_dic["日付"] = str(datetime.date.today())
             print(self.__ja_reviews_dic)
@@ -536,70 +532,23 @@ def jaget():
             
         def preservation(self):
             
-            yado_name = self.__ja_reviews_dic["宿名"]
-            area = self.__ja_reviews_dic["エリア"]
-            rank = float(self.__ja_reviews_dic["掲載順位"])
-            
-            total_review = float(self.__ja_reviews_dic["総合評価"])
-            room_score = float(self.__ja_reviews_dic["部屋"])
-            bath_score = float(self.__ja_reviews_dic["風呂"])
-            breakfast_score = float(self.__ja_reviews_dic["料理（朝食）"])
-            dinner_score = float(self.__ja_reviews_dic["料理（夕食）"])
-            service_score = float(self.__ja_reviews_dic["接客・サービス"])
-            review＿number = float(self.__ja_reviews_dic["口コミ件数"])
-            beautiful_score = float(self.__ja_reviews_dic["清潔感"])
-            
-            stay_overnight_lowest_price = self.__ja_reviews_dic["素泊まり最安値"]
-            dinner_breakfast_lowest_price = self.__ja_reviews_dic["2食付き最安値"]
-            
-            
-            print(dinner_breakfast_lowest_price)
-            print(type(dinner_breakfast_lowest_price))
-            print("--------")
-            
-            
-            now = self.__ja_reviews_dic["日付"]
-            print(now)
-            
-            # name = Yado.objects.get(name)
-            # print(name)
-            row_name = Yado(name=yado_name)
-            print(row_name.name)
-            print("--------------------")
-            print(yado_name)
-            try:
-                row_name.save()
-            except:
-                print("重複していたので保存しない")
-            
-            #reviewsオブジェクトのnameは、リレーションしているので、Yadoオブジェクトから引っ張ってきた宿名だといけない
-            review1 = Yado.objects.get(name=yado_name)
-            row = reviews(beautiful_score=beautiful_score,
-                          room_score=room_score,
-                          bath_score=bath_score,
-                          yado_name = yado_name,
-                          breakfast_score=breakfast_score, 
-                          service_score=service_score,
-                          review＿number=review＿number,
-                          total_review=total_review,
-                          dinner_score=dinner_score,
-                          area=area,
-                          rank=rank,
-                          stay_overnight_lowest_price=stay_overnight_lowest_price,
-                          dinner_breakfast_lowest_price=dinner_breakfast_lowest_price,
-                          created_at=now,
-                          name=review1)
-            row.save()
-            
+            with open(str(datetime.date.today())+ "JA.csv", 'a', encoding='utf-8') as f:
+                for review_list in self.__ja_reviews_dic.values():
+                    f.write(str(review_list) + ",")
+                f.write('\n')
+                
+                 
     Create = Create()
     a_func = Create.url_create()
 
     Create_func = Create.get_yado_info()
     print(datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
 
-    print("データベースに完了")
+    print("エクセルに保存が完了")
+    
 
 
 if __name__ == '__main__':
-    jaget()
+    jaexget()
+    
 # エリアの順位
