@@ -7,10 +7,15 @@
 {% endblock customcss %}
 
 {% block content %}
-<!-- <h1>完了しました</h1> -->
+
+<h1>完了しました</h1>
 
 <a href=" {% url 'index' %} ">トップ戻る</a>
-{% for r in rev %}
+
+<!-- 
+データベースの中身表示 -->
+
+<!-- {% for r in rev %}
 {{ r.yado_name}}
 {% endfor %}
-{% endblock content %}
+{% endblock content %} -->

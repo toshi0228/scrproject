@@ -23,8 +23,7 @@ def rev(request):
         print("scraping開始します")
     else:
         print('scrapingしません')
-    return render (request, 'index.html', {'rev': rev})
-
+    return render (request, 'index.html')
 
 
 def scrap(request):
@@ -44,7 +43,10 @@ def finish(request):
         get()
     else:
         print("あああ")
-    return render (request, 'index.html', {'rev': rev})
+    return render (request, 'index.html')
+
+    # return render (request, 'index.html', {'rev': rev})
+
 
 
 #じゃらんデータベースに保存
@@ -69,14 +71,15 @@ def jaex(request):
         jaexget()
     else:
         print("エクセルに保存が動いた")
-    return HttpResponse('エクセルにじゃらんの口コミデータ保存完了')
+    return render (request, 'finish.html')
 
 
 #楽天
 def rt(request):
     if request.method == 'POST' or request.method == 'GET':
         rtget()
-    return HttpResponse('エクセルに楽天の口コミデータ保存完了')
+    # return HttpResponse('エクセルに楽天の口コミデータ保存完了')
+    return render (request, 'finish.html')
 
 
 
@@ -84,19 +87,19 @@ def rt(request):
 def rtsa(request):
     if request.method == 'POST' or request.method == 'GET':
         rtsaget()
-    return HttpResponse('エクセルに楽天の口コミデータ保存完了(営業用)')
+    return render (request, 'finish.html')
 
 
 #楽天営業用エリア番号取得
 def rtnum(request):
     if request.method == 'POST' or request.method == 'GET':
         rtnum_get()
-    return HttpResponse('楽天番号取得完了')
+    return render (request, 'finish.html')
 
 def janum(request):
     if request.method == 'POST' or request.method == 'GET':
         janum_get()
-    return HttpResponse('じゃらん番号取得完了')
+    return render (request, 'finish.html')
     
     
     

@@ -29,7 +29,8 @@ def janum_get():
         
         def url_create(self):
             
-            with open('/Users/enokitoshiki/Desktop/ja_yado_num.txt', encoding='utf-8') as f:
+            #このファイルにじゃらんの番号を入れることによって、宿の口コミを取得できる。
+            with open('./ys/ja_yado_num.txt', encoding='utf-8') as f:
                 for row in f:
                     yado = row.rstrip()
                     self.__yados_num.append(yado)
@@ -73,7 +74,7 @@ def janum_get():
         def access(self):
             
             global driver
-            driver=webdriver.Chrome("/Users/enokitoshiki/anaconda3/envs/testskyper/selenium/chromedriver", chrome_options=chrome_options)
+            driver=webdriver.Chrome("./selenium/chromedriver", chrome_options=chrome_options)
             driver.maximize_window()
             print(self.url)
             driver.get(self.url)

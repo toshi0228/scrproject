@@ -9,7 +9,7 @@ def rtnum_get():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--incognito")
 
-    driver=webdriver.Chrome("/Users/enokitoshiki/anaconda3/envs/testskyper/selenium/chromedriver", chrome_options=chrome_options)
+    driver=webdriver.Chrome("./selenium/chromedriver", chrome_options=chrome_options)
     driver.maximize_window()
     # --------------------------------------------------------------------------------リスト取得-------------------------------------------------------------------------------------
 
@@ -32,7 +32,8 @@ def rtnum_get():
             #楽天番号
             yados_num = [ ]
             
-            with open('/Users/enokitoshiki/Desktop/RT_yado_num.txt', encoding='utf-8') as f:
+            #このファイルに楽天の番号を入れることによって、宿の口コミを取得できる。
+            with open('./ys/RT_yado_num.txt', encoding='utf-8') as f:
                 for row in f:
                     yado = row.rstrip()
                     yados_num.append(yado)

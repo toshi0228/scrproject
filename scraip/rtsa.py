@@ -7,8 +7,8 @@ import datetime
 
 def rtsaget():
     print(datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S"))
-
-    driver=webdriver.Chrome("/Users/enokitoshiki/anaconda3/envs/testskyper/selenium/chromedriver")
+    
+    driver=webdriver.Chrome("./selenium/chromedriver")
     driver.maximize_window()
 
 
@@ -47,7 +47,8 @@ def rtsaget():
         
         def url_create(self):
             
-            with open('/Users/enokitoshiki/Desktop/RT_yado_num.txt', encoding='utf-8') as f:
+            #このファイルに楽天の番号を入れることによって、宿の口コミを取得できる。
+            with open('./ys/RT_yado_num.txt', encoding='utf-8') as f:
                 for row in f:
                     yado = row.rstrip()
                     self.__yados_num.append(yado)

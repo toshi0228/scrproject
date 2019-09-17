@@ -2,7 +2,7 @@ from django.urls import path, include
 from .views import index, rev, finish, ja, jaex, rt, rtsa, rtnum, janum
 
 urlpatterns = [
-    path("", index),
+    path("", rev, name='index'),
     path('index/',rev, name='index'),
     path('finish/',finish, name='finish'),
     path("jafinish/", ja, name='ja'),

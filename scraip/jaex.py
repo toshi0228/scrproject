@@ -48,7 +48,8 @@ def jaexget():
         
         def url_create(self):
             
-            with open('/Users/enokitoshiki/Desktop/ja_yado_num.txt', encoding='utf-8') as f:
+            #このファイルにじゃらんの番号を入れることによって、宿の口コミを取得できる。
+            with open('./ys/ja_yado_num.txt', encoding='utf-8') as f:
                 for row in f:
                     yado = row.rstrip()
                     self.__yados_num.append(yado)
@@ -500,10 +501,7 @@ def jaexget():
                             
 
     # ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝エリア移動＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-
-                            
-                            
-                    
+        
         def yado_rank(self):
             rank_list = []
             yado_name_list = []
