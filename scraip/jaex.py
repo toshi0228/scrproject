@@ -87,7 +87,7 @@ def jaexget():
                         
                         # driver.getはdriver=webdriver.Chrome()を使ったあとでないと起動しない
                         global driver
-                        driver=webdriver.Chrome("/Users/enokitoshiki/anaconda3/envs/testskyper/selenium/chromedriver", chrome_options=chrome_options)
+                        driver=webdriver.Chrome("./selenium/chromedriver", chrome_options=chrome_options)
                         driver.maximize_window()
                         
                     # GetYadoクラス（一件の宿情報を取得してくれるもの）にURLを引数に渡す
@@ -109,7 +109,7 @@ def jaexget():
             #remaining例) 5宿の情報を2何回に分けて情報を取得したら、残り一つの宿があまるからここで取得する。
             for i in range(remaining):
                 
-                driver=webdriver.Chrome("/Users/enokitoshiki/anaconda3/envs/testskyper/selenium/chromedriver", chrome_options=chrome_options)
+                driver=webdriver.Chrome("./selenium/chromedriver", chrome_options=chrome_options)
                 driver.maximize_window()
 
                 get = GetYado(self.__urls[0], self.__yados_num[0])
@@ -550,3 +550,5 @@ if __name__ == '__main__':
     jaexget()
     
 # エリアの順位
+
+
